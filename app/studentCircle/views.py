@@ -38,6 +38,7 @@ def loginPage(request):
     return render(request, 'login_register.html', context)
 
 
+@login_required(login_url='login')
 def logoutUser(request):
     logout(request)
     return redirect('home')

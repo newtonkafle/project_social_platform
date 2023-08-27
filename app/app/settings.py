@@ -25,16 +25,16 @@ load_dotenv(find_dotenv())
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f6w%3d*f6!q95n$=7iwgz7zfv#gfgsws1vht1%e*@_@$y^kh2w'
+SECRET_KEY = os.getenv('SECRET_KEY', 'changeme')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.getenv('DEBUG', 0)))
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = []
 ALLOWED_HOSTS.extend(
     filter(
         None,
-        os.environ.get('ALLOWED_HOSTS', '').split(',')
+        os.getenv('ALLOWED_HOSTS', '').split(','),
     )
 )
 
@@ -135,11 +135,18 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+# STATIC_ROOT = BASE_DIR / 'static/'
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
+
+# # STATICFILES_DIRS = [
+# #     BASE_DIR / 'static'
+# # ]
+
+# MEDIA_ROOT = BASE_DIR / 'static/images'
+
+MEDIA_ROOT = '/vol/web/media/'
+STATIC_ROOT = '/vol/web/static/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
