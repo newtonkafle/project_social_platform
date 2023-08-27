@@ -3,16 +3,19 @@ from django.test import TestCase
 
 
 class UserModelTest(TestCase):
-    def __init__(self):
+    def setUp(self):
+        self.username = 'test'
         self.email = 'test@example.com'
         self.password = 'test@123'
 
     def test_create_user(self):
         """Test to create user successfully. """
         user = get_user_model().objects.create_user(
+            username=self.username,
             email=self.email,
             password=self.password)
 
+        self.assertEqual(user.username, self.username)
         self.assertEqual(user.email, self.email)
         self.assertTrue(user.check_password(self.password))
         self.assertFalse(user.is_active)
@@ -29,6 +32,7 @@ class UserModelTest(TestCase):
         ]
         for email, outcome in sample_emails:
             user = get_user_model().objects.create_user(
+                username=self.username,
                 email=email,
                 password=self.password)
             self.assertEqual(user.email, outcome)
@@ -36,6 +40,7 @@ class UserModelTest(TestCase):
     def test_create_super_user(self):
         """Test creating a super user"""
         user = get_user_model().objects.create_superuser(
+            username=self.username,
             email=self.email,
             password=self.password
         )

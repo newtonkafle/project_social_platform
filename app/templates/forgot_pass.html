@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<main class="auth layout">
+  <div class="container">
+    <div class="layout__box">
+      <div class="layout__boxHeader">
+        <div class="layout__boxTitle">
+          <h3>Account Recovery</h3>
+        </div>
+      </div>
+      <div class="layout__body">
+        <h2 class="auth__tagline">Enter your email to send rest link</h2>
+
+        <form class="form" action="" method="POST">
+          <div class="login-center">
+            {% csrf_token %}
+            <div class="form__group">
+              <label for="room_name">Email</label>
+              <input id="username" name="email" type="text" placeholder="e.g. learners@gmail.com" />
+            </div>
+            <div>
+              <button class="btn btn--main" type="submit">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

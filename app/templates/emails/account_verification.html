@@ -1,0 +1,10 @@
+{% autoescape off %}
+<!-- prettier-ignore -->
+Hi {{request.user.username}},
+
+This is the email reagarding activation of your
+account you careated, Please click on link below to confirm your registration.
+<!-- prettier-ignore -->
+http://{{domain}}{%url 'activate' uidb64=uid token=token %} 
+ 
+ {% endautoescape %}
