@@ -40,3 +40,8 @@ class ProfileUpdateForm(ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
+
+
+class TestForm(ModelForm):
+    # this is the model form
+    pass
