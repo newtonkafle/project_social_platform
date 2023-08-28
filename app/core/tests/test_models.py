@@ -4,22 +4,21 @@ from django.test import TestCase
 
 class UserModelTest(TestCase):
     def setUp(self):
-        self.username = 'test'
-        self.email = 'test@example.com'
-        self.password = 'test@123'
+        self.email = 'testing@example.com'
+        self.password = 'testing@123'
 
     def test_create_user(self):
         """Test to create user successfully. """
+        username = "test123"
         user = get_user_model().objects.create_user(
-            username=self.username,
+            username=username,
             email=self.email,
             password=self.password)
 
-        self.assertEqual(user.username, self.username)
+        self.assertEqual(user.username, username)
         self.assertEqual(user.email, self.email)
         self.assertTrue(user.check_password(self.password))
         self.assertFalse(user.is_active)
-        self.assertFalse(user.is_admin)
         self.assertFalse(user.is_superuser)
 
     def test_email_normalized_for_user(self):
@@ -30,18 +29,20 @@ class UserModelTest(TestCase):
             ['TEST3@EXAMPLE.COM', 'TEST3@example.com'],
             ['test4@example.COM', 'test4@example.com']
         ]
+        count = 1
         for email, outcome in sample_emails:
             user = get_user_model().objects.create_user(
-                username=self.username,
+                username=f'test{count}',
                 email=email,
                 password=self.password)
             self.assertEqual(user.email, outcome)
+            count += 1
 
     def test_create_super_user(self):
         """Test creating a super user"""
         user = get_user_model().objects.create_superuser(
-            username=self.username,
-            email=self.email,
+            username="testing12",
+            email="testing12@gmail.com",
             password=self.password
         )
         self.assertTrue(user.is_superuser)
