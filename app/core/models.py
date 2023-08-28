@@ -60,7 +60,7 @@ class Profile(models.Model):
     profile_picture = models.ImageField(
         upload_to='core/pofile_pictures', default="avatar.svg", null=True)
     city = models.CharField(max_length=200, null=True)
-    bio = models.TextField(max_length=250, null=True)
+    bio = models.TextField(max_length=550, null=True)
 
 
 class Topic(models.Model):
