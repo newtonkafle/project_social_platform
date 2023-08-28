@@ -58,9 +58,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     profile_picture = models.ImageField(
-        upload_to='core/pofile_pictures',
-        default="https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg",
-        null=True)
+        upload_to='core/pofile_pictures', default="avatar.svg", null=True)
     city = models.CharField(max_length=200, null=True)
     bio = models.TextField(max_length=250, null=True)
 
