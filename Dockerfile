@@ -1,6 +1,6 @@
 # configuration of the docker for the python development environment
 
-FROM python:3.10-alpine3.17
+FROM python:3.9-alpine3.13
 
 ENV PYTHONUNBUFFRED 1
 
@@ -32,10 +32,10 @@ RUN python -m venv /py && \
         django-user && \
     mkdir -p /vol/web/media && \
     mkdir -p /vol/web/static && \
+    cp -r /app/static/images /vol/web/media/ && \
     chown -R django-user:django-user /vol && \
     chmod -R 755 /vol && \
-    chmod -R +x /scripts 
-    
+    chmod -R +x /scripts
 
 
 ENV PATH="/scripts:/py/bin:$PATH"
